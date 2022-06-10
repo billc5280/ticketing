@@ -18,12 +18,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@my-sgtickets/common": "^1.0.13",
+    "@my-sgtickets/common": "^1.0.14",
     "@types/bull": "^3.15.2",
     "bull": "^3.22.10",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.7.2"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
