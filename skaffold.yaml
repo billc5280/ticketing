@@ -1,58 +1,59 @@
-apiVersion: skaffold/v2beta28
+apiVersion: skaffold/v2beta29
 kind: Config
+build:
+  artifacts:
+  - image: billcollins5872/auth
+    context: auth
+    sync:
+      manual:
+      - src: src/**/*.ts
+        dest: .
+    docker:
+      dockerfile: Dockerfile
+  - image: billcollins5872/client
+    context: client
+    sync:
+      manual:
+      - src: '**/*.js'
+        dest: .
+    docker:
+      dockerfile: Dockerfile
+  - image: billcollins5872/tickets
+    context: tickets
+    sync:
+      manual:
+      - src: src/**/*.ts
+        dest: .
+    docker:
+      dockerfile: Dockerfile
+  - image: billcollins5872/orders
+    context: orders
+    sync:
+      manual:
+      - src: src/**/*.ts
+        dest: .
+    docker:
+      dockerfile: Dockerfile
+  - image: billcollins5872/expiration
+    context: expiration
+    sync:
+      manual:
+      - src: src/**/*.ts
+        dest: .
+    docker:
+      dockerfile: Dockerfile
+  - image: billcollins5872/payments
+    context: payments
+    sync:
+      manual:
+      - src: src/**/*.ts
+        dest: .
+    docker:
+      dockerfile: Dockerfile
+  local:
+    push: false
 deploy:
   kubectl:
     manifests:
-      - ./infra/k8s/*
-build:
-  local:
-    push: false
-  artifacts:
-    - image: billcollins5872/auth
-      context: auth
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: billcollins5872/client
-      context: client
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "**/*.js"
-            dest: .
-    - image: billcollins5872/tickets
-      context: tickets
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: billcollins5872/orders
-      context: orders
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: billcollins5872/expiration
-      context: expiration
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
-    - image: billcollins5872/payments
-      context: payments
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: "src/**/*.ts"
-            dest: .
+    - ./infra/k8s/*
+    - ./infra/k8s-dev/*
